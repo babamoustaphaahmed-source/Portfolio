@@ -3,461 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baba Moustapha Ahmed | Portfolio Dev</title>
+    <title>Baba Moustapha Ahmed | Développeur web et mobile</title>
+    <meta name="description" content="Portfolio de Baba Moustapha Ahmed, étudiant en informatique de gestion à Lomé, spécialisé en développement web et mobile (PHP, MySQL, JavaScript). À la recherche d'un stage.">
+    <meta name="theme-color" content="#047857">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
         :root {
-            --vert-1: #10B981; --vert-2: #059669; --vert-dark: #047857;
-            --fond: #F0FDF4; --carte: rgba(255, 255, 255, 0.8);
-            --texte: #1F2937; --gris: #6B7280;
+            --vert-1: #10B981; --vert-2: #059669; --vert-dark: #047857; --vert-nuit: #064E3B;
+            --fond: #F0FDF4; --menthe: #D1FAE5; --blanc: #FFFFFF;
+            --texte: #1F2937; --gris: #4B5563;
+            --ombre: 0 8px 28px rgba(6, 78, 59, 0.08);
         }
-        * { 
-            box-sizing: 
-            border-box; 
-            margin: 0; 
-            padding: 0; 
-            scroll-behavior: smooth; 
-        }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background: var(--fond); color: var(--texte);
-             overflow-x: hidden; 
-            }
-        .container { 
-            width: min(95%, 1200px); 
-            margin: 0 auto; 
-            padding: 60px 20px; 
-        }
-        
-        /* ===== NOUVEAU : EFFET SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px); /* Arrive du bas */
-            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-            transition-delay: var(--delay, 0s); /* Pour le stagger */
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-left { transform: translateX(-50px); } /* Arrive de gauche */
-        .reveal-right { transform: translateX(50px); } /* Arrive de droite */
-        .reveal.visible.reveal-left,
-        .reveal.visible.reveal-right { transform: translateX(0); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Poppins', system-ui, sans-serif; background: var(--fond); color: var(--texte); line-height: 1.7; overflow-x: hidden; }
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+        :focus-visible { outline: 3px solid var(--vert-1); outline-offset: 3px; border-radius: 6px; }
+        .skip { position: absolute; left: -999px; top: 8px; background: var(--vert-dark); color: #fff; padding: 8px 16px; border-radius: 8px; z-index: 100; }
+        .skip:focus { left: 8px; }
+
+        .container { width: min(94%, 1120px); margin: 0 auto; }
+        section { padding: 72px 0 8px; }
+        h2 { font-size: clamp(1.6rem, 4.5vw, 2.2rem); color: var(--vert-nuit); line-height: 1.2; margin-bottom: 10px; }
+        .intro { color: var(--gris); max-width: 60ch; margin-bottom: 36px; }
+        h3 { font-size: 1.05rem; color: var(--vert-dark); line-height: 1.4; }
+
+        /* ===== NAVIGATION ===== */
+        .nav { position: sticky; top: 0; z-index: 50; background: rgba(240, 253, 244, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--menthe); }
+        .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+        .logo { font-weight: 700; color: var(--vert-nuit); text-decoration: none; letter-spacing: 0.5px; }
+        .nav ul { display: flex; gap: 22px; list-style: none; overflow-x: auto; }
+        .nav ul a { text-decoration: none; font-weight: 500; font-size: 0.92rem; color: var(--gris); white-space: nowrap; padding: 6px 2px; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+        .nav ul a:hover { color: var(--vert-dark); border-color: var(--vert-1); }
 
         /* ===== HERO ===== */
-        .tete { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            gap: 15px; 
-            padding: 80px 0; 
-            background: linear-gradient(135deg, var(--vert-1), var(--vert-dark)); 
-            color: white; 
-            border-radius: 30px; 
-            margin-bottom: 60px; 
-        }
-        .tete img { 
-            width: clamp(150px, 30vw, 220px); 
-            height: clamp(150px, 30vw, 220px); 
-            border-radius: 50%; object-fit: cover; 
-            border: 6px solid rgba(255,255,255,0.3); 
-            transition: transform 0.4s; }
-        .tete img:hover { 
-            transform: scale(1.05) rotate(3deg); 
-        }
-        .tete .name { 
-            font-size: clamp(2rem, 6vw, 3rem); 
-            font-weight: 700; 
-            margin-bottom: 10px;
-        }
-        .actions { 
-            display: flex; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-            justify-content:center; 
-            margin-top: 20px; 
-        }
-        .btn { 
-            padding: 14px 30px; 
-            background: white; 
-            color: var(--vert-dark); 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            transition: all 0.3s ease;
-         }
-        .btn:hover { 
-            transform: translateY(-4px); 
-        }
-        .btn.btn-vert { 
-            background: var(--vert-dark); 
-            color: white; 
-        }
-        h2 { 
-            text-align: center; 
-            font-size: clamp(1.8rem, 5vw, 2.5rem); 
-            margin-bottom: 40px; color: var(--vert-dark); 
-        }
+        .hero { margin-top: 28px; background: linear-gradient(135deg, var(--vert-2), var(--vert-nuit)); color: #fff; border-radius: 28px; padding: clamp(32px, 6vw, 72px); display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+        .hero .role { font-weight: 500; opacity: .9; margin-bottom: 8px; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin-bottom: 18px; }
+        .hero .pitch { max-width: 52ch; opacity: .95; margin-bottom: 22px; }
+        .dispo { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3); padding: 8px 16px; border-radius: 50px; font-size: .9rem; font-weight: 500; margin-bottom: 26px; }
+        .dispo::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #6EE7B7; }
+        .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn { display: inline-block; padding: 13px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; background: #fff; color: var(--vert-nuit); border: 2px solid #fff; transition: transform .25s, background .25s; }
+        .btn:hover { transform: translateY(-3px); }
+        .btn.ghost { background: transparent; color: #fff; }
+        .btn.ghost:hover { background: rgba(255,255,255,.12); }
+        .hero-photo { justify-self: center; }
+        .hero-photo img { width: clamp(180px, 28vw, 290px); aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 6px solid rgba(255,255,255,.3); box-shadow: 0 18px 40px rgba(0,0,0,.25); }
 
-        /* ===== CARTES GENERIQUES ===== */
-        .card {
-            background: var(--carte); 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 20px; 
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.08);
-        }
-        .grid-3 { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-        }
-        .grid-2 { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; 
-        }
+        /* ===== CARTES ===== */
+        .card { background: var(--blanc); border: 1px solid var(--menthe); border-radius: 18px; padding: 28px; box-shadow: var(--ombre); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .apropos p + p { margin-top: 14px; }
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+        .tag { background: var(--menthe); color: var(--vert-dark); padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: .9rem; }
 
-        /* ===== A PROPOS ===== */
-        .tags { 
-            display: flex; 
-            gap: 10px; 
-            flex-wrap: wrap; 
-            margin-top: 20px; 
-        }
-        .tag { 
-            background: #D1FAE5; 
-            color: var(--vert-dark); 
-            padding: 8px 15px; 
-            border-radius: 20px; 
-            font-weight: 600; 
-            font-size: 0.9rem; 
-        }
-
-        /* ===== FORMATIONS ===== */
-        .formation-card h3 { 
-            color: var(--vert-dark); 
-            margin-bottom: 10px; }
-        .formation-card p { 
-            color: var(--gris); 
-            margin-bottom: 15px; 
-        }
-        .liste-matiere { 
-            list-style: none;
-         }
-        .liste-matiere li { 
-            padding: 5px 0; 
-            border-bottom: 1px dashed #D1FAE5; }
+        /* ===== PARCOURS (frise chronologique) ===== */
+        .frise { list-style: none; position: relative; padding-left: 28px; border-left: 3px solid var(--menthe); display: grid; gap: 22px; }
+        .frise li { position: relative; }
+        .frise li::before { content: ""; position: absolute; left: -37px; top: 8px; width: 15px; height: 15px; border-radius: 50%; background: var(--vert-1); border: 3px solid var(--fond); }
+        .frise .date { font-size: .85rem; font-weight: 600; color: var(--vert-2); }
+        .frise p { color: var(--gris); font-size: .95rem; }
+        .frise .lieu { font-weight: 500; color: var(--texte); }
+        .formation-extra { margin-top: 24px; display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .formation-extra ul { list-style: none; margin-top: 10px; }
+        .formation-extra li { padding: 7px 0; border-bottom: 1px dashed var(--menthe); }
+        .formation-extra li:last-child { border: 0; }
 
         /* ===== COMPETENCES ===== */
-        .skill { 
-            margin-bottom: 18px; 
-        }
-        .skill-header {
-             display: flex; 
-             justify-content: space-between; 
-             font-weight: 600; 
-            }
-        .progress-bar { 
-            background: #D1FAE5; 
-            border-radius: 10px; 
-            height: 12px; 
-            margin-top: 8px; 
-            overflow: hidden; }
-        .progress { 
-            background: linear-gradient(90deg, var(--vert-1), var(--vert-2)); 
-            height: 100%; 
-            border-radius: 10px; 
-            width: 0; /* Commence à 0 pour l'animation */
-            transition: width 1.5s ease-in-out 0.5s; /* Se lance après l'arrivée */
-        }
-        .progress.animate { width: var(--width); 
-        } /* JS va ajouter cette classe */
-
-        /* ===== CERTIFICATIONS ===== */
-        .cert-card { 
-            text-align: center; 
-            border-left: 5px solid var(--vert-1); 
-        }
+        .skills li { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--menthe); font-weight: 500; }
+        .skills li:last-child { border: 0; }
+        .skills h3 { margin-bottom: 8px; }
+        .niveau { display: inline-flex; gap: 4px; align-items: center; font-size: .8rem; font-weight: 500; color: var(--gris); }
+        .niveau i { width: 9px; height: 9px; border-radius: 50%; background: var(--menthe); }
+        .niveau i.on { background: var(--vert-1); }
 
         /* ===== PROJETS ===== */
-        .projet { background: white;
-             border-radius: 20px; 
-             overflow: hidden; 
-             box-shadow: 0 10px 20px rgba(0,0,0,0.07); 
-             transition: transform 0.4s; 
-             display: flex; 
-             flex-direction: column; 
-            }
-        .projet:hover { 
-            transform: translateY(-10px); 
-        }
-        .projet img { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover; 
-        }
-        .projet-content { 
-            padding: 25px; 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .projet h3 { 
-            color: var(--vert-dark);
-            margin-bottom: 10px; 
-        }
-        .projet p { 
-            flex-grow: 1; 
-            margin-bottom: 15px; 
-        }
-        .projet a { 
-            margin-top: auto; 
-            padding: 10px 20px; 
-            background: var(--vert-1); color: white; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            text-align: center; 
-            
-        }
+        .projet { background: var(--blanc); border: 1px solid var(--menthe); border-radius: 18px; overflow: hidden; box-shadow: var(--ombre); display: flex; flex-direction: column; transition: transform .3s; }
+        .projet:hover { transform: translateY(-6px); }
+        .projet img { width: 100%; height: 190px; object-fit: cover; background: var(--menthe); }
+        .projet-body { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; gap: 10px; }
+        .projet p { color: var(--gris); font-size: .95rem; flex-grow: 1; }
+        .stack { display: flex; gap: 8px; flex-wrap: wrap; }
+        .stack span { background: var(--fond); color: var(--vert-dark); border: 1px solid var(--menthe); padding: 2px 12px; border-radius: 14px; font-size: .8rem; font-weight: 600; }
+        .projet a { align-self: flex-start; margin-top: 6px; padding: 9px 20px; background: var(--vert-dark); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: .92rem; transition: background .2s; }
+        .projet a:hover { background: var(--vert-nuit); }
 
         /* ===== CONTACT ===== */
-        .contact-info { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px; 
-        }
-        .contact-item { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    font-size: 1rem; 
-    font-weight: 500;
-    transition: transform 0.2s;
-}
-.contact-item:hover { transform: translateX(5px); } /* Petit effet au hover */
-.contact-item:hover { transform: translateX(5px); } /* Petit effet au hover */
+        .contact-info { display: flex; flex-direction: column; gap: 18px; }
+        .contact-item { display: flex; align-items: center; gap: 14px; font-weight: 500; }
+        .contact-item a { text-decoration: none; word-break: break-all; }
+        .contact-item a:hover { color: var(--vert-dark); text-decoration: underline; }
+        .contact-icon { width: 46px; height: 46px; background: var(--menthe); color: var(--vert-dark); border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+        .contact-form label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 4px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 13px 14px; border: 1px solid #A7F3D0; border-radius: 10px; margin-bottom: 14px; font: inherit; background: #fff; }
+        .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--vert-1); border-color: var(--vert-1); }
+        .contact-form button { width: 100%; padding: 14px; border: 0; background: var(--vert-dark); color: #fff; border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer; transition: background .2s; }
+        .contact-form button:hover { background: var(--vert-nuit); }
+        .form-note { font-size: .85rem; color: var(--gris); margin-top: 10px; }
 
-.contact-icon { 
-    width: 50px; 
-    height: 50px; 
-    background: #D1FAE5; 
-    color: var(--vert-dark); /* La couleur verte s’applique aux SVG */
-    border-radius: 50%; 
-    display: grid; 
-    place-items: center; 
-    flex-shrink: 0; /* Empêche l’icône de rétrécir */
-}
+        footer { background: var(--vert-nuit); color: #fff; text-align: center; padding: 22px 12px; margin-top: 72px; font-size: .9rem; }
 
-.contact-icon { 
-    width: 50px; 
-    height: 50px; 
-    background: #D1FAE5; 
-    color: var(--vert-dark); /* La couleur verte s’applique aux SVG */
-    border-radius: 50%; 
-    display: grid; 
-    place-items: center; 
-    flex-shrink: 0; /* Empêche l’icône de rétrécir */
-}
-        .contact-form input, .contact-form textarea { 
-            width: 100%; 
-            padding: 15px; 
-            border: 1px solid #D1FAE5; 
-            border-radius: 10px; margin-bottom: 15px; 
-            font-family: 'Poppins';
-            font-size: 1rem;
+        /* ===== ANIMATION : sobre, une seule fois ===== */
+        .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+        .js .reveal.visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+            .btn, .projet { transition: none; }
         }
-        .contact-form button {
-             width: 100%; 
-             padding: 15px; 
-             border: none; background: var(--vert-dark); 
-             color: white; border-radius: 10px; 
-             font-weight: 700; 
-             cursor: pointer; }
-        
-        footer { 
-            background: var(--vert-dark); 
-            color: white; text-align: center; 
-            padding: 20px; 
-            margin-top: 60px; }
-        @media (max-width: 600px) { .container { padding: 40px 15px; } }
+
+        @media (max-width: 760px) {
+            .hero { grid-template-columns: 1fr; text-align: left; }
+            .hero-photo { order: -1; justify-self: start; }
+            section { padding-top: 56px; }
+        }
     </style>
 </head>
 <body>
-    <main class="container">
-        
-        <!-- ===== TETE ===== -->
-        <header class="tete reveal visible"> <!-- Visible direct -->
-            <img src="../photo/WhatsApp Image 2026-07-03 at 16.06.58.jpeg" alt="Photo de Baba Moustapha Ahmed">
-            <p>--- Étudiant Informatique de Gestion | Option Dev Web & Mobile</p>
-            <h1 class="name">BABA Moustapha Ahmed</h1>
-            <div class="actions">
-                <a href="#projets" class="btn btn-vert">Voir mes projets</a>
-                <a href="#contact" class="btn">Contactez-moi</a>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+
+    <nav class="nav" aria-label="Navigation principale">
+        <div class="container nav-in">
+            <a class="logo" href="#accueil">BMA</a>
+            <ul>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="contenu" class="container">
+
+        <!-- ===== ACCUEIL ===== -->
+        <header class="hero" id="accueil">
+            <div>
+                <p class="role">Étudiant en informatique de gestion · Développement web et mobile</p>
+                <h1>BABA Moustapha Ahmed</h1>
+                <p class="pitch">Je conçois des applications web avec PHP et MySQL, de la base de données à l'interface. Je cherche un stage pour mettre ces compétences au service d'une équipe.</p>
+                <p class="dispo">Disponible pour un stage en développement</p>
+                <div class="actions">
+                    <a href="#projets" class="btn">Voir mes projets</a>
+                    <a href="#contact" class="btn ghost">Me contacter</a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <img src="../photo/WhatsApp Image 2026-07-03 at 16.06.58.jpeg" alt="Portrait de Baba Moustapha Ahmed" width="290" height="290">
             </div>
         </header>
 
-        <!-- ===== A PROPOS : Arrive de Gauche ===== -->
-        <section id="apropos" class="reveal reveal-left" style="--delay: 0.1s;">
+        <!-- ===== A PROPOS ===== -->
+        <section id="apropos" class="reveal">
             <h2>À propos</h2>
-            <div class="card">
-               <p>Etudiant en informatique de gestion avec une spécialisation en développement d'applications web et mobile, Je suis en licence à l'École Supérieure des Affaires (ESA) de Lomé. <br> J'ai acquis des compétences en programmation et en gestion de projets informatiques.</p>
-               <p>Mon objectif est de devenir un développeur full-stack compétent, capable de concevoir et de développer des applications web et mobile performantes et intuitives.<br> 
-                J'ai appris à utiliser des langages comme PHP/MYSQL pour le backend et HTML/CSS, JavaScript pour le frontend.</p>
-
-                <div class="tags" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
+            <div class="card apropos">
+                <p>Étudiant en informatique de gestion, option développement d'applications web et mobile, à l'École Supérieure des Affaires (ESA) de Lomé. J'ai acquis des bases solides en programmation et en gestion de projets informatiques.</p>
+                <p>Mon objectif est de devenir développeur full-stack et de concevoir des applications web et mobile performantes et intuitives. J'utilise PHP et MySQL côté serveur, HTML, CSS et JavaScript côté interface.</p>
+                <div class="tags">
                     <span class="tag">Curieux</span><span class="tag">Rigoureux</span><span class="tag">Autonome</span><span class="tag">Motivé</span>
                 </div>
             </div>
         </section>
 
-        <!-- ===== FORMATIONS : Arrive de Droite, cartes en stagger ===== -->
-        <section id="formations" class="reveal reveal-right" style="--delay: 0.1s;">
-            <h2>Formations</h2>
-            <div class="grid-3">
-                <div class="card formation-card reveal" style="--delay: 0.2s;"><h3>Formations</h3><p><b>Licence de Génie Logiciel</b></p><p>École Supérieure des Affaires, Lomé</p></div>
-                <div class="card formation-card reveal" style="--delay: 0.3s;"><h3>Matières clés</h3><ul class="liste-matiere"><li>Développement Web & Mobile</li><li>Base de Données & SQL</li><li>Gestion de Projets</li></ul></div>
-                <div class="card formation-card reveal" style="--delay: 0.4s;"><h3>Travail collaboratif</h3><p>Expérience en méthodologie Agile/Scrum pour la gestion de projet.</p></div>
-                <div class="card formation-card reveal" style="--delay: 0.2s;"><h3>Stage-Formation IT- A.E.F.T.S, Lomé|juillet 2025</h3><p>Maintenance informatique,Réseaux,Développement Web,Python</p></div>
-                <div class="card formation-card reveal" style="--delay: 0.3s;"><h3>Formation TIC & Entrepreneuriat Digital- GIZ/CNEJ, Mango|Juillet 2022</h3><p>Bureautique Office, Internet, Métiers du Numérique et l'Entrepreneuriat</p></div>
+        <!-- ===== PARCOURS ===== -->
+        <section id="parcours" class="reveal">
+            <h2>Parcours</h2>
+            <p class="intro">Ma formation et mes expériences, de la plus récente à la plus ancienne.</p>
+            <ol class="frise">
+                <li>
+                    <span class="date">En cours</span>
+                    <h3>Licence en informatique de gestion</h3>
+                    <p class="lieu">École Supérieure des Affaires, Lomé</p>
+                    <p>Option développement d'applications.</p>
+                </li>
+                <li>
+                    <span class="date">Juillet 2025</span>
+                    <h3>Stage-formation IT</h3>
+                    <p class="lieu">A.E.F.T.S, Lomé</p>
+                    <p>Maintenance informatique, réseaux, développement web, Python.</p>
+                </li>
+                <li>
+                    <span class="date">Juillet 2022</span>
+                    <h3>Formation TIC et entrepreneuriat digital</h3>
+                    <p class="lieu">GIZ / CNEJ, Mango</p>
+                    <p>Bureautique Office, Internet, métiers du numérique et entrepreneuriat.</p>
+                </li>
+            </ol>
+            <div class="formation-extra">
+                <div class="card">
+                    <h3>Matières clés</h3>
+                    <ul><li>Développement web et mobile</li><li>Bases de données et SQL</li><li>Gestion de projets</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Travail en équipe</h3>
+                    <p style="color: var(--gris); margin-top: 8px;">Pratique de la méthodologie Agile/Scrum pour organiser et suivre un projet à plusieurs.</p>
+                </div>
+                <div class="card">
+                    <h3>Objectif de stage</h3>
+                    <p style="color: var(--gris); margin-top: 8px;">Stage en développement d'applications web et mobile.</p>
+                </div>
             </div>
-            <div class="card objectif-stage reveal" style="--delay: 0.5s; margin-top: 30px;"><h3>Objectif de stage</h3><p>Je recherche un stage en développement d'applications web et mobile.</p></div>
         </section>
 
-        <!-- ===== COMPETENCES : Barres qui se remplissent ===== -->
-        <section id="competences" class="reveal" style="--delay: 0.1s;">
+        <!-- ===== COMPETENCES ===== -->
+        <section id="competences" class="reveal">
             <h2>Compétences</h2>
-            <div class="grid-3">
-                <div class="card reveal" style="--delay: 0.2s;">
+            <p class="intro">Le niveau est indiqué sur trois points : notions, intermédiaire, avancé.</p>
+            <div class="grid skills">
+                <div class="card">
                     <h3>Développement web</h3>
-                    <div class="skill"><div class="skill-header"><span>PHP</span><span>80%</span></div><div class="progress-bar"><div class="progress" style="--width: 80%;"></div></div></div>
-                    <div class="skill"><div class="skill-header"><span>MySQL</span><span>85%</span></div><div class="progress-bar"><div class="progress" style="--width: 85%;"></div></div></div>
-                    <div class="skill"><div class="skill-header"><span>HTML/CSS</span><span>90%</span></div><div class="progress-bar"><div class="progress" style="--width: 90%;"></div></div></div>
+                    <ul>
+                        <li>HTML / CSS <span class="niveau" aria-label="Niveau avancé"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+                        <li>MySQL <span class="niveau" aria-label="Niveau avancé"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+                        <li>PHP <span class="niveau" aria-label="Niveau avancé"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+                        <li>JavaScript <span class="niveau" aria-label="Niveau intermédiaire"><i class="on"></i><i class="on"></i><i></i></span></li>
+                    </ul>
                 </div>
-                <div class="card reveal" style="--delay: 0.3s;">
-                    <h3>Outils & Méthodes</h3>
-                    <div class="skill"><div class="skill-header"><span>Git/GitHub</span><span>70%</span></div><div class="progress-bar"><div class="progress" style="--width: 70%;"></div></div></div>
-                    <div class="skill"><div class="skill-header"><span>Agile/Scrum</span><span>60%</span></div><div class="progress-bar"><div class="progress" style="--width: 60%;"></div></div></div>
+                <div class="card">
+                    <h3>Outils et méthodes</h3>
+                    <ul>
+                        <li>Git / GitHub <span class="niveau" aria-label="Niveau intermédiaire"><i class="on"></i><i class="on"></i><i></i></span></li>
+                        <li>Agile / Scrum <span class="niveau" aria-label="Niveau intermédiaire"><i class="on"></i><i class="on"></i><i></i></span></li>
+                    </ul>
                 </div>
-                <div class="card reveal" style="--delay: 0.4s;">
-                    <h3>Langages & Bases</h3>
-                    <div class="skill"><div class="skill-header"><span>Python/Django</span><span>75%</span></div><div class="progress-bar"><div class="progress" style="--width: 75%;"></div></div></div>
-                    <div class="skill"><div class="skill-header"><span>Langage C</span><span>55%</span></div><div class="progress-bar"><div class="progress" style="--width: 65%;"></div></div></div>
+                <div class="card">
+                    <h3>Autres langages</h3>
+                    <ul>
+                        <li>Python / Django <span class="niveau" aria-label="Niveau intermédiaire"><i class="on"></i><i class="on"></i><i></i></span></li>
+                        <li>Langage C <span class="niveau" aria-label="Niveau notions"><i class="on"></i><i></i><i></i></span></li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- ===== FORMATIONS & CERTIFICATIONS : Stagger ===== 
-        <section id="certifications" class="reveal" style="--delay: 0.1s;">
-            <h2>Formations & Certifications</h2>
-            <div class="grid-3">
-                <div class="card formation-card reveal" style="--delay: 0.2s;"><h3>Stage-Formation IT- A.E.F.T.S, Lomé|juillet 2025</h3><p>Maintenance informatique,Réseaux,Développement Web,Python</p></div>
-                <div class="card formation-card reveal" style="--delay: 0.3s;"><h3>Formation TIC & Entrepreneuriat Digital- GIZ/CNEJ, Mango|Juillet 2022</h3><p>Bureautique Office, Internet, Métiers du Numérique et l'Entrepreneuriat</p></div>
-            </div>
-        </section>-->
-
-        <!-- ===== PROJETS : Stagger ===== -->
-        <section id="projets" class="reveal" style="--delay: 0.1s;">
-            <h2>Projets Réalisés</h2>
-            <div class="grid-3">
-                <div class="projet reveal" style="--delay: 0.2s;"><img src="../photo/delphie.png" alt="Projet 1"><div class="projet-content"><h3>Gestion d'une bibliothèque</h3><p>Application Desktop Delphi + MySQL.</p><a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank">Voir sur GitHub</a></div></div>
-                <div class="projet reveal" style="--delay: 0.3s;"><img src="../photo/esashp.PNG" alt="Projet 2"><div class="projet-content"><h3>Gestion d'une application de vente en ligne</h3><p>Application web PHP/MySQL.</p><a href="https://github.com/babamoustaphaahmed-source/Projet-ecommerce-php" target="_blank">Voir sur GitHub</a></div></div>
-                <div class="projet reveal" style="--delay: 0.4s;"><img src="../photo/resto.PNG" alt="Projet 3"><div class="projet-content"><h3>Application de Gestion de Restauration</h3><p>Application web PHP.</p><a href="https://github.com/babamoustaphaahmed-source/Gestion-Restauration" target="_blank">Voir sur GitHub</a></div></div>
-                <div class="projet reveal" style="--delay: 0.2s;"><img src="../photo/destin.PNG" alt="Projet 4"><div class="projet-content"><h3> Le destin de vos coeurs</h3><p>Application Web Interactive en HTML,CSS ET JavaScript.</p><a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank">Voir sur GitHub</a></div></div>
-                <!-- <div class="projet reveal" style="--delay: 0.2s;"><img src="../photo/WhatsApp Image 2026-07-03 at 09.22.22.jpeg" alt="Projet 5"><div class="projet-content"><h3>Application web de Gestion des notes au BTS</h3><p>Application Web en PHP + MySQL.</p><a href="https://github.com/babamoustaphaahmed-source/Projet-de-gestion-des-note" target="_blank">Voir sur GitHub</a></div></div> -->
-
+        <!-- ===== PROJETS ===== -->
+        <section id="projets" class="reveal">
+            <h2>Projets réalisés</h2>
+            <p class="intro">Chaque projet est disponible sur GitHub avec son code source.</p>
+            <div class="grid">
+                <article class="projet">
+                    <img src="../photo/delphie.png" alt="Capture de l'application de gestion de bibliothèque" width="400" height="190" loading="lazy">
+                    <div class="projet-body">
+                        <h3>Gestion d'une bibliothèque</h3>
+                        <p>Application de bureau pour gérer les livres, les adhérents et les emprunts.</p>
+                        <div class="stack"><span>Delphi</span><span>MySQL</span></div>
+                        <a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank" rel="noopener">Voir sur GitHub</a>
+                    </div>
+                </article>
+                <article class="projet">
+                    <img src="../photo/esashp.PNG" alt="Capture de l'application de vente en ligne" width="400" height="190" loading="lazy">
+                    <div class="projet-body">
+                        <h3>Application de vente en ligne</h3>
+                        <p>Application web de e-commerce : catalogue de produits, panier et commandes.</p>
+                        <div class="stack"><span>PHP</span><span>MySQL</span></div>
+                        <a href="https://github.com/babamoustaphaahmed-source/Projet-ecommerce-php" target="_blank" rel="noopener">Voir sur GitHub</a>
+                    </div>
+                </article>
+                <article class="projet">
+                    <img src="../photo/resto.PNG" alt="Capture de l'application de gestion de restauration" width="400" height="190" loading="lazy">
+                    <div class="projet-body">
+                        <h3>Gestion de restauration</h3>
+                        <p>Application web pour gérer les activités d'un restaurant.</p>
+                        <div class="stack"><span>PHP</span></div>
+                        <a href="https://github.com/babamoustaphaahmed-source/Gestion-Restauration" target="_blank" rel="noopener">Voir sur GitHub</a>
+                    </div>
+                </article>
+                <article class="projet">
+                    <img src="../photo/destin.PNG" alt="Capture de l'application Le destin de vos coeurs" width="400" height="190" loading="lazy">
+                    <div class="projet-body">
+                        <h3>Le destin de vos cœurs</h3>
+                        <p>Application web interactive, entièrement côté navigateur.</p>
+                        <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                        <!-- TODO : ce lien pointe vers le dépôt de la bibliothèque, remplace-le par le bon dépôt -->
+                        <a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank" rel="noopener">Voir sur GitHub</a>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- ===== CONTACT : Arrive de Gauche ===== -->
-        <section id="contact" class="reveal reveal-left" style="--delay: 0.1s;">
-            <h2>Contactez-moi</h2>
-            <div class="grid-2">
+        <!-- ===== CONTACT ===== -->
+        <section id="contact" class="reveal">
+            <h2>Contact</h2>
+            <p class="intro">Une proposition de stage ou une question sur un projet ? Écrivez-moi, je réponds rapidement.</p>
+            <div class="grid">
                 <div class="card contact-info">
-    <h3>Informations</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg></span>
+                        <a href="tel:+22891294320">+228 91 29 43 20</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg></span>
+                        <a href="mailto:babamoustapha@gmail.com">babamoustapha@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></span>
+                        <!-- TODO : remplace par l'adresse exacte de ton profil LinkedIn (sans espace) -->
+                        <a href="https://www.linkedin.com/in/TON-PROFIL" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span>
+                        <a href="https://github.com/babamoustaphaahmed-source" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
 
-    <div class="contact-item">
-        <div class="contact-icon">
-            <!-- Logo Téléphone -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
-            </svg>
-        </div>
-        <a href="tel:+22891294320" style="color: inherit; text-decoration: none;">+228 91294320</a>
-    </div>
-
-    <div class="contact-item">
-        <div class="contact-icon">
-            <!-- Logo Email -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-            </svg>
-        </div>
-        <h3></h3>
-        <a href="mailto:babamoustapha@gmail.com" style="color: inherit; text-decoration: none;">babamoustapha@gmail.com</a>
-    </div>
-
-    <div class="contact-item">
-        <div class="contact-icon">
-            <!-- Logo LinkedIn -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 0 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-            </svg>
-        </div>
-        <a href="https://linkedin.com/in/Ahmed BABA" target="_blank" style="color: inherit; text-decoration: none;">linkedin</a>
-    </div>
-
-
-    <div class="contact-item">
-        <div class="contact-icon">
-            <!-- Logo GitHub -->
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
-        </div>
-        <a href="https://github.com/babamoustaphaahmed-source" target="_blank" style="color: inherit; text-decoration: none;">Github</a>
-    </div>
-
-    </div>
-        <div class="card contact-form reveal" style="--delay: 0.2s;">
-            <h3>Envoyez-moi un message</h3>
-            <form action="mailto:babamoustaphaahmed@gmail.com" method="post" enctype="text/plain">
-                <input type="text" placeholder="Votre nom" required>
-                <input type="email" placeholder="Votre email" required>
-                <textarea rows="5" placeholder="Votre message" required></textarea>
-                <button type="submit">Envoyer</button>
-            </form>
-        </div>
-    </div>
-    </section>
+                <div class="card contact-form">
+                    <h3 style="margin-bottom: 16px;">Envoyez-moi un message</h3>
+                    <form id="form-contact">
+                        <label for="nom">Nom</label>
+                        <input id="nom" type="text" autocomplete="name" required>
+                        <label for="email">Email</label>
+                        <input id="email" type="email" autocomplete="email" required>
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                        <button type="submit">Envoyer le message</button>
+                        <p class="form-note">Votre application de messagerie s'ouvrira avec le message déjà rédigé.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
-    <footer class="reveal">
+
+    <footer>
         <p>© 2026 Baba Moustapha Ahmed. Tous droits réservés.</p>
     </footer>
 
-    <!-- ===== SCRIPT : LE CERVEAU DES EFFETS ===== -->
     <script>
+        document.documentElement.classList.add('js');
+
+        // Apparition douce des sections, une seule fois
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
-                    // Lance l'animation des barres de compétence
-                    entry.target.querySelectorAll('.progress').forEach(bar => {
-                        bar.classList.add('animate');
-                    });
-
-                    observer.unobserve(entry.target); // Lance une seule fois
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 }); // Se déclenche quand 10% de la section est visible
-
+        }, { threshold: 0.08 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Formulaire : ouvre la messagerie avec le message prérempli
+        const EMAIL = 'babamoustapha@gmail.com';
+        document.getElementById('form-contact').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nom = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const msg = document.getElementById('message').value.trim();
+            const sujet = 'Message depuis votre portfolio : ' + nom;
+            const corps = msg + '\n\n' + nom + '\n' + email;
+            window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(sujet) + '&body=' + encodeURIComponent(corps);
+        });
     </script>
 </body>
 </html>
