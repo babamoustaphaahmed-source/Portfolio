@@ -4,110 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baba Moustapha Ahmed | Développeur web et mobile</title>
-    <meta name="description" content="Portfolio de Baba Moustapha Ahmed, étudiant en informatique de gestion à Lomé, spécialisé en développement web et mobile (PHP, MySQL, JavaScript). À la recherche d'un stage.">
-    <meta name="theme-color" content="#047857">
+    <meta name="description" content="Portfolio de Baba Moustapha Ahmed, étudiant en génie logiciel à Lomé, spécialisé en développement web et mobile (PHP, MySQL, JavaScript). À la recherche d'un stage.">
+    <meta name="theme-color" content="#0A1A3A">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --vert-1: #10B981; --vert-2: #059669; --vert-dark: #047857; --vert-nuit: #064E3B;
-            --fond: #F0FDF4; --menthe: #D1FAE5; --blanc: #FFFFFF;
-            --texte: #1F2937; --gris: #4B5563;
-            --ombre: 0 8px 28px rgba(6, 78, 59, 0.08);
+            --nuit: #0A1A3A; --carte: rgba(10, 26, 58, 0.9); --bord: rgba(255, 255, 255, 0.16);
+            --accent: #38BDF8; --accent-2: #7DD3FC; --blanc: #FFFFFF; --texte: #E2E8F0; --gris: #A9B8D0;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-        body { font-family: 'Poppins', system-ui, sans-serif; background: var(--fond); color: var(--texte); line-height: 1.7; overflow-x: hidden; }
+        /* Fond bleu sombre rayé de lignes blanches horizontales et verticales */
+        body {
+            font-family: 'Poppins', system-ui, sans-serif; color: var(--texte); line-height: 1.7; overflow-x: hidden;
+            background-color: var(--nuit);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.11) 1px, transparent 1px);
+            background-size: 44px 44px;
+            background-attachment: fixed;
+        }
         a { color: inherit; }
         img { max-width: 100%; display: block; }
-        :focus-visible { outline: 3px solid var(--vert-1); outline-offset: 3px; border-radius: 6px; }
-        .skip { position: absolute; left: -999px; top: 8px; background: var(--vert-dark); color: #fff; padding: 8px 16px; border-radius: 8px; z-index: 100; }
+        :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+        .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--nuit); padding: 8px 16px; border-radius: 8px; z-index: 100; }
         .skip:focus { left: 8px; }
 
         .container { width: min(94%, 1120px); margin: 0 auto; }
         section { padding: 72px 0 8px; }
-        h2 { font-size: clamp(1.6rem, 4.5vw, 2.2rem); color: var(--vert-nuit); line-height: 1.2; margin-bottom: 10px; }
-        .intro { color: var(--gris); max-width: 60ch; margin-bottom: 36px; }
-        h3 { font-size: 1.05rem; color: var(--vert-dark); line-height: 1.4; }
+        h2 { font-size: clamp(1.6rem, 4.5vw, 2.2rem); color: var(--blanc); line-height: 1.2; margin-bottom: 10px; }
+        h2::after { content: ""; display: block; width: 56px; height: 4px; background: var(--accent); border-radius: 4px; margin-top: 10px; }
+        .intro { color: var(--gris); max-width: 60ch; margin: 14px 0 32px; }
+        h3 { font-size: 1.05rem; color: var(--accent-2); line-height: 1.4; }
 
-        /* ===== NAVIGATION ===== */
-        .nav { position: sticky; top: 0; z-index: 50; background: rgba(240, 253, 244, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--menthe); }
+        /* NAVIGATION */
+        .nav { position: sticky; top: 0; z-index: 50; background: rgba(10, 26, 58, 0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--bord); }
         .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
-        .logo { font-weight: 700; color: var(--vert-nuit); text-decoration: none; letter-spacing: 0.5px; }
+        .logo { font-weight: 700; color: var(--blanc); text-decoration: none; letter-spacing: 1px; }
         .nav ul { display: flex; gap: 22px; list-style: none; overflow-x: auto; }
         .nav ul a { text-decoration: none; font-weight: 500; font-size: 0.92rem; color: var(--gris); white-space: nowrap; padding: 6px 2px; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
-        .nav ul a:hover { color: var(--vert-dark); border-color: var(--vert-1); }
+        .nav ul a:hover { color: var(--blanc); border-color: var(--accent); }
 
-        /* ===== HERO ===== */
-        .hero { margin-top: 28px; background: linear-gradient(135deg, var(--vert-2), var(--vert-nuit)); color: #fff; border-radius: 28px; padding: clamp(32px, 6vw, 72px); display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
-        .hero .role { font-weight: 500; opacity: .9; margin-bottom: 8px; }
-        .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin-bottom: 18px; }
-        .hero .pitch { max-width: 52ch; opacity: .95; margin-bottom: 22px; }
-        .dispo { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3); padding: 8px 16px; border-radius: 50px; font-size: .9rem; font-weight: 500; margin-bottom: 26px; }
-        .dispo::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #6EE7B7; }
+        /* ACCUEIL */
+        .hero { margin-top: 28px; background: var(--carte); border: 1px solid var(--bord); border-radius: 24px; padding: clamp(28px, 6vw, 68px); display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+        .hero .role { font-weight: 500; color: var(--accent-2); margin-bottom: 8px; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; color: var(--blanc); margin-bottom: 18px; }
+        .hero .pitch { max-width: 52ch; margin-bottom: 22px; }
+        .dispo { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--accent); color: var(--accent-2); padding: 8px 16px; border-radius: 50px; font-size: .9rem; font-weight: 500; margin-bottom: 26px; }
+        .dispo::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
         .actions { display: flex; gap: 14px; flex-wrap: wrap; }
-        .btn { display: inline-block; padding: 13px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; background: #fff; color: var(--vert-nuit); border: 2px solid #fff; transition: transform .25s, background .25s; }
+        .btn { display: inline-block; padding: 13px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; background: var(--accent); color: var(--nuit); border: 2px solid var(--accent); transition: transform .25s; }
         .btn:hover { transform: translateY(-3px); }
-        .btn.ghost { background: transparent; color: #fff; }
-        .btn.ghost:hover { background: rgba(255,255,255,.12); }
+        .btn.ghost { background: transparent; color: var(--blanc); border-color: var(--blanc); }
         .hero-photo { justify-self: center; }
-        .hero-photo img { width: clamp(180px, 28vw, 290px); aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 6px solid rgba(255,255,255,.3); box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+        .hero-photo img { width: clamp(180px, 28vw, 290px); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 5px solid var(--accent); box-shadow: 0 18px 40px rgba(0,0,0,.45); }
 
-        /* ===== CARTES ===== */
-        .card { background: var(--blanc); border: 1px solid var(--menthe); border-radius: 18px; padding: 28px; box-shadow: var(--ombre); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .apropos p + p { margin-top: 14px; }
+        /* CARTES */
+        .card { background: var(--carte); border: 1px solid var(--bord); border-radius: 16px; padding: 26px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+        .profil p + p { margin-top: 14px; }
         .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
-        .tag { background: var(--menthe); color: var(--vert-dark); padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: .9rem; }
+        .tag { border: 1px solid var(--accent); color: var(--accent-2); padding: 5px 16px; border-radius: 20px; font-weight: 600; font-size: .88rem; }
 
-        /* ===== PARCOURS (frise chronologique) ===== */
-        .frise { list-style: none; position: relative; padding-left: 28px; border-left: 3px solid var(--menthe); display: grid; gap: 22px; }
+        /* FRISE (expériences et formation) */
+        .frise { list-style: none; position: relative; padding-left: 28px; border-left: 3px solid var(--bord); display: grid; gap: 22px; }
         .frise li { position: relative; }
-        .frise li::before { content: ""; position: absolute; left: -37px; top: 8px; width: 15px; height: 15px; border-radius: 50%; background: var(--vert-1); border: 3px solid var(--fond); }
-        .frise .date { font-size: .85rem; font-weight: 600; color: var(--vert-2); }
+        .frise li::before { content: ""; position: absolute; left: -37px; top: 8px; width: 15px; height: 15px; border-radius: 50%; background: var(--accent); border: 3px solid var(--nuit); }
+        .frise .date { font-size: .85rem; font-weight: 600; color: var(--accent); }
+        .frise .lieu { font-weight: 500; color: var(--blanc); }
         .frise p { color: var(--gris); font-size: .95rem; }
-        .frise .lieu { font-weight: 500; color: var(--texte); }
-        .formation-extra { margin-top: 24px; display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .formation-extra ul { list-style: none; margin-top: 10px; }
-        .formation-extra li { padding: 7px 0; border-bottom: 1px dashed var(--menthe); }
-        .formation-extra li:last-child { border: 0; }
+        .liste { list-style: none; margin-top: 10px; }
+        .liste li { padding: 7px 0; border-bottom: 1px dashed var(--bord); }
+        .liste li:last-child { border: 0; }
 
-        /* ===== COMPETENCES ===== */
-        .skills li { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--menthe); font-weight: 500; }
+        /* COMPETENCES */
+        .skills li { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--bord); font-weight: 500; }
         .skills li:last-child { border: 0; }
         .skills h3 { margin-bottom: 8px; }
-        .niveau { display: inline-flex; gap: 4px; align-items: center; font-size: .8rem; font-weight: 500; color: var(--gris); }
-        .niveau i { width: 9px; height: 9px; border-radius: 50%; background: var(--menthe); }
-        .niveau i.on { background: var(--vert-1); }
+        .niveau { display: inline-flex; gap: 4px; }
+        .niveau i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.2); }
+        .niveau i.on { background: var(--accent); }
 
-        /* ===== PROJETS ===== */
-        .projet { background: var(--blanc); border: 1px solid var(--menthe); border-radius: 18px; overflow: hidden; box-shadow: var(--ombre); display: flex; flex-direction: column; transition: transform .3s; }
+        /* PROJETS */
+        .projet { background: var(--carte); border: 1px solid var(--bord); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .3s; }
         .projet:hover { transform: translateY(-6px); }
-        .projet img { width: 100%; height: 190px; object-fit: cover; background: var(--menthe); }
+        .projet img { width: 100%; height: 190px; object-fit: cover; background: var(--nuit); }
         .projet-body { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; gap: 10px; }
         .projet p { color: var(--gris); font-size: .95rem; flex-grow: 1; }
         .stack { display: flex; gap: 8px; flex-wrap: wrap; }
-        .stack span { background: var(--fond); color: var(--vert-dark); border: 1px solid var(--menthe); padding: 2px 12px; border-radius: 14px; font-size: .8rem; font-weight: 600; }
-        .projet a { align-self: flex-start; margin-top: 6px; padding: 9px 20px; background: var(--vert-dark); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: .92rem; transition: background .2s; }
-        .projet a:hover { background: var(--vert-nuit); }
+        .stack span { border: 1px solid var(--bord); color: var(--accent-2); padding: 2px 12px; border-radius: 14px; font-size: .8rem; font-weight: 600; }
+        .liens { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+        .projet .liens a { padding: 9px 18px; background: var(--accent); color: var(--nuit); border: 2px solid var(--accent); border-radius: 10px; text-decoration: none; font-weight: 600; font-size: .9rem; }
+        .projet .liens a.live { background: transparent; color: var(--accent-2); }
+        .projet .liens a.live:hover { background: rgba(56,189,248,.14); }
 
-        /* ===== CONTACT ===== */
+        /* CONTACT */
         .contact-info { display: flex; flex-direction: column; gap: 18px; }
         .contact-item { display: flex; align-items: center; gap: 14px; font-weight: 500; }
         .contact-item a { text-decoration: none; word-break: break-all; }
-        .contact-item a:hover { color: var(--vert-dark); text-decoration: underline; }
-        .contact-icon { width: 46px; height: 46px; background: var(--menthe); color: var(--vert-dark); border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+        .contact-item a:hover { color: var(--accent-2); text-decoration: underline; }
+        .contact-icon { width: 46px; height: 46px; border: 1px solid var(--accent); color: var(--accent); border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
         .contact-form label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 4px; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 13px 14px; border: 1px solid #A7F3D0; border-radius: 10px; margin-bottom: 14px; font: inherit; background: #fff; }
-        .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--vert-1); border-color: var(--vert-1); }
-        .contact-form button { width: 100%; padding: 14px; border: 0; background: var(--vert-dark); color: #fff; border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer; transition: background .2s; }
-        .contact-form button:hover { background: var(--vert-nuit); }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--bord); border-radius: 10px; margin-bottom: 14px; font: inherit; background: rgba(255,255,255,.06); color: var(--blanc); }
+        .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); }
+        .contact-form button { width: 100%; padding: 14px; border: 0; background: var(--accent); color: var(--nuit); border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer; }
         .form-note { font-size: .85rem; color: var(--gris); margin-top: 10px; }
 
-        footer { background: var(--vert-nuit); color: #fff; text-align: center; padding: 22px 12px; margin-top: 72px; font-size: .9rem; }
+        footer { background: var(--nuit); border-top: 1px solid var(--bord); text-align: center; padding: 22px 12px; margin-top: 72px; font-size: .9rem; color: var(--gris); }
 
-        /* ===== ANIMATION : sobre, une seule fois ===== */
+        /* ===== CV (invisible à l'écran, imprimé / enregistré en PDF au clic sur « Télécharger mon CV ») ===== */
+        #cv { display: none; font-family: "Times New Roman", Times, serif; color: #000; }
+        #cv .page { flex: none; }
+        #cv h2::after { display: none; }
+        #cv .page {flex: none; width: 210mm; height: 297mm; background: #fff; border: 6mm solid #D6E6F0; padding: 7mm 6mm 6mm; display: grid; grid-template-columns: 62mm 1fr; transform-origin: top left; overflow: hidden; }
+        #cv .gauche {padding-right: 4mm; }
+        #cv .droite {border-left: 1.5px solid #1F4E79; padding-left: 5mm; }
+        #cv .photo {width: 48mm; height: 44mm; border: 2px solid #000; border-radius: 9mm; overflow: hidden; margin: 2mm 0 6mm 2mm; background: #eef2f7; }
+        #cv .photo img {width: 100%; height: 100%; object-fit: cover; display: block; }
+        #cv .contact {font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 9pt; line-height: 1.5; margin: 0 0 7mm 4mm; word-break: break-all; }
+        #cv .g-titre {font-style: italic; font-weight: 700; font-size: 11.5pt; line-height: 1.25; margin-bottom: 2mm; }
+        #cv .rouge {color: #8B1A1A; }
+        #cv .vert {color: #1AA35A; text-align: center; }
+        #cv .marine {color: #1F3A5F; text-align: center; }
+        #cv .g-bloc {margin-bottom: 6mm; }
+        #cv .g-bloc ul {list-style: none; font-size: 10pt; font-weight: 700; font-style: italic; line-height: 1.35; }
+        #cv .g-bloc.puces li::before {content: "\2022"; margin-right: 3px; }
+        #cv .g-bloc.fleches li {color: #1F6FB5; padding-left: 7mm; position: relative; margin-bottom: 1mm; }
+        #cv .g-bloc.fleches li::before {content: "\21D2"; position: absolute; left: 0; color: #1F6FB5; font-style: normal; }
+        #cv .g-bloc.langues li {color: #C0111A; padding-left: 8mm; position: relative; font-size: 10.5pt; }
+        #cv .g-bloc.langues li::before {content: "\25CA"; position: absolute; left: 0; }
+        #cv .ref {text-align: center; font-size: 9.5pt; font-weight: 700; margin-top: 2mm; }
+        #cv h1 {text-align: center; font-size: 23pt; line-height: 1.1; }
+        #cv .poste {text-align: center; font-style: italic; font-weight: 700; font-size: 12.5pt; color: #0A6EBD; margin-top: 1mm; }
+        #cv .filiere {text-align: center; font-style: italic; font-weight: 700; font-size: 12.5pt; color: #B8625C; margin-bottom: 3mm; }
+        #cv h2 {font-style: italic; font-weight: 700; font-size: 16pt; text-decoration: underline; margin: 5mm 0 2mm; line-height: 1.2; }
+        #cv h2.bleu {color: #0A6EBD; }
+        #cv h2.rouge {color: #C0111A; }
+        #cv h2.noir {color: #000; }
+        #cv h2.vide {color: #6B21A8; }
+        #cv h2.espace {letter-spacing: 2.2px; }
+        #cv .droite p, #cv .droite li {font-size: 11pt; line-height: 1.42; text-align: justify; }
+        #cv .droite .poste, #cv .droite .filiere {text-align: center; font-size: 13pt; }
+        #cv .obj {font-style: italic; font-weight: 700; font-size: 10.4pt !important; }
+        #cv .item {margin-bottom: 1.6mm; }
+        #cv .item b {font-weight: 700; }
+        #cv .item i {font-weight: 700; }
+        #cv .puce {font-style: italic; font-weight: 700; margin: 0 0 1.4mm 0; }
+        #cv .puce::before {content: "\2022"; margin-right: 3px; }
+        @media print {
+            @page { size: A4; margin: 0; }
+            body.imprime-cv { background: #fff !important; background-image: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body.imprime-cv > *:not(#cv) { display: none !important; }
+            body.imprime-cv #cv { display: block !important; }
+            #cv .page { margin: 0; height: 296.5mm; }
+        }
+
+        /* ANIMATION sobre, une seule fois */
         .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
         .js .reveal.visible { opacity: 1; transform: none; }
         @media (prefers-reduced-motion: reduce) {
@@ -115,11 +169,29 @@
             .js .reveal { opacity: 1; transform: none; transition: none; }
             .btn, .projet { transition: none; }
         }
-
+        @media (max-width: 900px) {
+            .hero { gap: 28px; }
+        }
         @media (max-width: 760px) {
-            .hero { grid-template-columns: 1fr; text-align: left; }
+            html { scroll-padding-top: 112px; }
+            body { background-size: 32px 32px; background-attachment: scroll; }
+            .nav-in { flex-direction: column; height: auto; padding: 8px 0 6px; gap: 2px; }
+            .nav ul { width: 100%; gap: 18px; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .nav ul::-webkit-scrollbar { display: none; }
+            .hero { grid-template-columns: 1fr; margin-top: 18px; border-radius: 18px; }
             .hero-photo { order: -1; justify-self: start; }
             section { padding-top: 56px; }
+            .card { padding: 20px; }
+        }
+        @media (max-width: 480px) {
+            .actions .btn { width: 100%; text-align: center; }
+            .hero-photo img { width: 150px; }
+            .frise { padding-left: 22px; }
+            .frise li::before { left: -31px; }
+            .liens a { flex: 1 1 100%; text-align: center; }
+            .contact-icon { width: 40px; height: 40px; }
+            .contact-item { gap: 10px; font-size: .92rem; }
+            footer { margin-top: 48px; }
         }
     </style>
 </head>
@@ -130,8 +202,9 @@
         <div class="container nav-in">
             <a class="logo" href="#accueil">BMA</a>
             <ul>
-                <li><a href="#apropos">À propos</a></li>
-                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#formation">Formation</a></li>
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -141,16 +214,17 @@
 
     <main id="contenu" class="container">
 
-        <!-- ===== ACCUEIL ===== -->
+        <!-- ACCUEIL -->
         <header class="hero" id="accueil">
             <div>
-                <p class="role">Étudiant en informatique de gestion · Développement web et mobile</p>
+                <p class="role">Étudiant en génie logiciel · Développement web et mobile</p>
                 <h1>BABA Moustapha Ahmed</h1>
                 <p class="pitch">Je conçois des applications web avec PHP et MySQL, de la base de données à l'interface. Je cherche un stage pour mettre ces compétences au service d'une équipe.</p>
                 <p class="dispo">Disponible pour un stage en développement</p>
                 <div class="actions">
                     <a href="#projets" class="btn">Voir mes projets</a>
                     <a href="#contact" class="btn ghost">Me contacter</a>
+                    <a href="#" class="btn ghost" data-cv>Télécharger mon CV</a>
                 </div>
             </div>
             <div class="hero-photo">
@@ -158,11 +232,11 @@
             </div>
         </header>
 
-        <!-- ===== A PROPOS ===== -->
-        <section id="apropos" class="reveal">
-            <h2>À propos</h2>
-            <div class="card apropos">
-                <p>Étudiant en informatique de gestion, option développement d'applications web et mobile, à l'École Supérieure des Affaires (ESA) de Lomé. J'ai acquis des bases solides en programmation et en gestion de projets informatiques.</p>
+        <!-- PROFIL -->
+        <section id="profil" class="reveal">
+            <h2>Profil</h2>
+            <div class="card profil">
+                <p>Étudiant en informatique de gestion, option développement d'applications, à l'École Supérieure des Affaires (ESA) de Lomé. J'ai acquis des bases solides en programmation et en gestion de projets informatiques.</p>
                 <p>Mon objectif est de devenir développeur full-stack et de concevoir des applications web et mobile performantes et intuitives. J'utilise PHP et MySQL côté serveur, HTML, CSS et JavaScript côté interface.</p>
                 <div class="tags">
                     <span class="tag">Curieux</span><span class="tag">Rigoureux</span><span class="tag">Autonome</span><span class="tag">Motivé</span>
@@ -170,16 +244,17 @@
             </div>
         </section>
 
-        <!-- ===== PARCOURS ===== -->
-        <section id="parcours" class="reveal">
-            <h2>Parcours</h2>
-            <p class="intro">Ma formation et mes expériences, de la plus récente à la plus ancienne.</p>
+        <!-- EXPERIENCES -->
+        <section id="experiences" class="reveal">
+            <h2>Expériences</h2>
+            <p class="intro">Mes stages et formations pratiques, du plus récent au plus ancien.</p>
             <ol class="frise">
                 <li>
-                    <span class="date">En cours</span>
-                    <h3>Licence en informatique de gestion</h3>
-                    <p class="lieu">École Supérieure des Affaires, Lomé</p>
-                    <p>Option développement d'applications.</p>
+                    <span class="date">Vacances actives</span>
+                    <h3>Stage vacances actives de l'ANPE</h3>
+                    <p class="lieu">SIC, Société Informatique et de Communication, Lomé</p>
+                    <p>Stage en entreprise dans le cadre du programme vacances actives de l'ANPE.</p>
+                    <!-- TODO : ajoute l'année et les missions réalisées chez SIC -->
                 </li>
                 <li>
                     <span class="date">Juillet 2025</span>
@@ -194,23 +269,28 @@
                     <p>Bureautique Office, Internet, métiers du numérique et entrepreneuriat.</p>
                 </li>
             </ol>
-            <div class="formation-extra">
+        </section>
+
+        <!-- FORMATION -->
+        <section id="formation" class="reveal">
+            <h2>Formation</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Licence en informatique de gestion</h3>
+                    <p style="margin-top: 8px;"><strong>École Supérieure des Affaires, Lomé</strong><br><span style="color: var(--gris);">Filière génie logiciel, option développement d'applications. En cours.</span></p>
+                </div>
                 <div class="card">
                     <h3>Matières clés</h3>
-                    <ul><li>Développement web et mobile</li><li>Bases de données et SQL</li><li>Gestion de projets</li></ul>
+                    <ul class="liste"><li>Développement web et mobile</li><li>Bases de données et SQL</li><li>Gestion de projets</li></ul>
                 </div>
                 <div class="card">
                     <h3>Travail en équipe</h3>
                     <p style="color: var(--gris); margin-top: 8px;">Pratique de la méthodologie Agile/Scrum pour organiser et suivre un projet à plusieurs.</p>
                 </div>
-                <div class="card">
-                    <h3>Objectif de stage</h3>
-                    <p style="color: var(--gris); margin-top: 8px;">Stage en développement d'applications web et mobile.</p>
-                </div>
             </div>
         </section>
 
-        <!-- ===== COMPETENCES ===== -->
+        <!-- COMPETENCES -->
         <section id="competences" class="reveal">
             <h2>Compétences</h2>
             <p class="intro">Le niveau est indiqué sur trois points : notions, intermédiaire, avancé.</p>
@@ -241,7 +321,7 @@
             </div>
         </section>
 
-        <!-- ===== PROJETS ===== -->
+        <!-- PROJETS -->
         <section id="projets" class="reveal">
             <h2>Projets réalisés</h2>
             <p class="intro">Chaque projet est disponible sur GitHub avec son code source.</p>
@@ -252,7 +332,10 @@
                         <h3>Gestion d'une bibliothèque</h3>
                         <p>Application de bureau pour gérer les livres, les adhérents et les emprunts.</p>
                         <div class="stack"><span>Delphi</span><span>MySQL</span></div>
-                        <a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank" rel="noopener">Voir sur GitHub</a>
+                        <div class="liens">
+                            <a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank" rel="noopener">Voir sur GitHub</a>
+                            <a class="live" data-live="bibliotheque" href="#" target="_blank" rel="noopener" hidden>Voir le site en ligne</a>
+                        </div>
                     </div>
                 </article>
                 <article class="projet">
@@ -261,7 +344,10 @@
                         <h3>Application de vente en ligne</h3>
                         <p>Application web de e-commerce : catalogue de produits, panier et commandes.</p>
                         <div class="stack"><span>PHP</span><span>MySQL</span></div>
-                        <a href="https://github.com/babamoustaphaahmed-source/Projet-ecommerce-php" target="_blank" rel="noopener">Voir sur GitHub</a>
+                        <div class="liens">
+                            <a href="https://github.com/babamoustaphaahmed-source/Projet-ecommerce-php" target="_blank" rel="noopener">Voir sur GitHub</a>
+                            <a class="live" data-live="ecommerce" href="#" target="_blank" rel="noopener" hidden>Voir le site en ligne</a>
+                        </div>
                     </div>
                 </article>
                 <article class="projet">
@@ -270,7 +356,10 @@
                         <h3>Gestion de restauration</h3>
                         <p>Application web pour gérer les activités d'un restaurant.</p>
                         <div class="stack"><span>PHP</span></div>
-                        <a href="https://github.com/babamoustaphaahmed-source/Gestion-Restauration" target="_blank" rel="noopener">Voir sur GitHub</a>
+                        <div class="liens">
+                            <a href="https://github.com/babamoustaphaahmed-source/Gestion-Restauration" target="_blank" rel="noopener">Voir sur GitHub</a>
+                            <a class="live" data-live="restauration" href="#" target="_blank" rel="noopener" hidden>Voir le site en ligne</a>
+                        </div>
                     </div>
                 </article>
                 <article class="projet">
@@ -280,13 +369,16 @@
                         <p>Application web interactive, entièrement côté navigateur.</p>
                         <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
                         <!-- TODO : ce lien pointe vers le dépôt de la bibliothèque, remplace-le par le bon dépôt -->
-                        <a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank" rel="noopener">Voir sur GitHub</a>
+                        <div class="liens">
+                            <a href="https://github.com/babamoustaphaahmed-source/Gestion-Bibliotheque" target="_blank" rel="noopener">Voir sur GitHub</a>
+                            <a class="live" data-live="destin" href="#" target="_blank" rel="noopener" hidden>Voir le site en ligne</a>
+                        </div>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- ===== CONTACT ===== -->
+        <!-- CONTACT -->
         <section id="contact" class="reveal">
             <h2>Contact</h2>
             <p class="intro">Une proposition de stage ou une question sur un projet ? Écrivez-moi, je réponds rapidement.</p>
@@ -304,6 +396,10 @@
                         <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></span>
                         <!-- TODO : remplace par l'adresse exacte de ton profil LinkedIn (sans espace) -->
                         <a href="https://www.linkedin.com/in/TON-PROFIL" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg></span>
+                        <a href="#" data-cv>Télécharger mon CV (PDF)</a>
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span>
@@ -332,10 +428,85 @@
         <p>© 2026 Baba Moustapha Ahmed. Tous droits réservés.</p>
     </footer>
 
+    <!-- ===== CV : caché à l'écran, utilisé pour le téléchargement en PDF ===== -->
+    <div id="cv" aria-hidden="true">
+    <article class="page">
+        <aside class="gauche">
+            <div class="photo"><img src="../photo/WhatsApp Image 2026-07-03 at 16.06.58.jpeg" alt="Photo de Baba Moustapha Ahmed"></div>
+            <div class="contact">
+                Lomé / TOGO<br>
+                (+228) 91 29 43 20<br>
+                babamoustapha@gmail.com<br>
+                github.com/babamoustaphaahmed-source
+            </div>
+
+            <div class="g-bloc puces">
+                <h3 class="g-titre rouge">Connaissances informatiques et réseaux</h3>
+                <ul>
+                    <li>Maîtrise de la suite Office</li>
+                    <li>Internet, maintenance informatique et réseaux</li>
+                    <li>Git / GitHub, Agile / Scrum</li>
+                </ul>
+            </div>
+
+            <div class="g-bloc fleches">
+                <h3 class="g-titre vert">Centres d'intérêt et atouts</h3>
+                <ul>
+                    <li>Curieux et rigoureux</li>
+                    <li>Autonome et motivé</li>
+                    <li>Esprit d'équipe</li>
+                    <li>Cybersécurité</li>
+                    <li>Science des données</li>
+                </ul>
+            </div>
+
+            <div class="g-bloc langues">
+                <h3 class="g-titre marine">Langues et expressions orales et écrites</h3>
+                <ul>
+                    <li>Français</li>
+                </ul>
+            </div>
+
+            <h3 class="g-titre vert">Personnes de référence</h3>
+            <p class="ref">Disponibles sur demande</p>
+        </aside>
+
+        <div class="droite">
+            <h1>BABA Moustapha Ahmed</h1>
+            <p class="poste">Développeur web et mobile</p>
+            <p class="filiere">Filière : Génie logiciel</p>
+
+            <h2 class="noir">Objectifs</h2>
+            <p class="obj">Étudiant en informatique de gestion, option développement d'applications, à l'École Supérieure des Affaires (ESA) de Lomé, je conçois des applications web avec PHP et MySQL, de la base de données à l'interface. Curieux, rigoureux et autonome, je cherche un stage en développement d'applications web et mobile pour mettre mes compétences au service d'une équipe. Mon objectif est de devenir développeur full-stack.</p>
+
+            <h2 class="bleu">Compétences</h2>
+            <p class="item">Développement web : PHP, MySQL / SQL, HTML, CSS, JavaScript</p>
+            <p class="item">Autres langages : Python / Django, Langage C, Delphi</p>
+            <p class="item">Méthodes : Agile / Scrum, gestion de projets informatiques</p>
+
+            <h2 class="rouge">Cursus</h2>
+            <p class="item"><b>En cours :</b> <i>Licence 2 en informatique de gestion, filière génie logiciel</i>, École Supérieure des Affaires (ESA), Lomé – TOGO</p>
+            <p class="item"><b>Licence 1 :</b> <i>Informatique de gestion, mention Assez Bien</i>, École Supérieure des Affaires (ESA), Lomé – TOGO</p>
+
+            <h2 class="bleu espace">Expériences Professionnelles</h2>
+            <p class="item"><b>Vacances actives :</b> <i>Stage vacances actives de l'ANPE</i>, SIC (Société Informatique et de Communication), Lomé – TOGO</p>
+            <p class="item"><b>Juillet 2025 :</b> <i>Stage-formation IT</i>, A.E.F.T.S, Lomé – TOGO</p>
+            <p class="puce">Maintenance informatique, réseaux, développement web, Python</p>
+            <p class="item"><b>Juillet 2022 :</b> <i>Formation TIC et entrepreneuriat digital</i>, GIZ / CNEJ, Mango – TOGO</p>
+            <p class="puce">Bureautique Office, Internet, métiers du numérique et entrepreneuriat</p>
+
+            <h2 class="vide">Projets réalisés</h2>
+            <p class="puce">Application de vente en ligne (PHP, MySQL)</p>
+            <p class="puce">Gestion d'une bibliothèque (Delphi, MySQL)</p>
+            <p class="puce">Gestion de restauration (PHP)</p>
+            <p class="puce">Le destin de vos cœurs (HTML, CSS, JavaScript)</p>
+        </div>
+    </article>
+    </div>
+
     <script>
         document.documentElement.classList.add('js');
 
-        // Apparition douce des sections, une seule fois
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -346,7 +517,27 @@
         }, { threshold: 0.08 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Formulaire : ouvre la messagerie avec le message prérempli
+        // Télécharger le CV : ouvre l'enregistrement en PDF (ou l'impression) avec uniquement le CV
+        document.querySelectorAll('[data-cv]').forEach(a => a.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.add('imprime-cv');
+            window.print();
+        }));
+        window.addEventListener('afterprint', () => document.body.classList.remove('imprime-cv'));
+
+        // Sites en ligne : colle l'adresse du projet déployé entre les guillemets.
+        // Tant qu'une adresse est vide, le bouton « Voir le site en ligne » reste caché.
+        const SITES_EN_LIGNE = {
+            bibliotheque: '',   // application de bureau Delphi : pas de site en ligne
+            ecommerce: '',
+            restauration: '',
+            destin: ''
+        };
+        document.querySelectorAll('[data-live]').forEach(a => {
+            const url = SITES_EN_LIGNE[a.dataset.live];
+            if (url) { a.href = url; a.hidden = false; }
+        });
+
         const EMAIL = 'babamoustapha@gmail.com';
         document.getElementById('form-contact').addEventListener('submit', (e) => {
             e.preventDefault();
